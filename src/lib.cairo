@@ -1,5 +1,5 @@
 #[starknet::contract]
-mod AgriCyclo {
+mod AgriCylo {
     use starknet::get_caller_address;
     use starknet::get_block_timestamp;
     use starknet::get_contract_address;

@@ -25,7 +25,7 @@ const howItWorksData = [
 
 const HowItWorks = () => {
   return (
-    <div className="mb-16 md:mb-56">
+    <section id="how-it-works" className="mb-16 md:mb-56">
       <Wrapper className="space-y-12">
         <div className="w-full">
           <h2 className="text-primary max-w-[672px] text-2xl font-medium sm:text-3xl md:text-4xl lg:text-[40px]">
@@ -53,7 +53,7 @@ const HowItWorks = () => {
           ))}
         </div>
       </Wrapper>
-    </div>
+    </section>
   );
 };
 

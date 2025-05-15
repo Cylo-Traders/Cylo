@@ -1,7 +1,8 @@
 "use client";
 
 import { cn } from "@/lib/utils";
-import { CheckCheck, Copy } from "lucide-react";
+import { CheckCheck } from "lucide-react";
+import { IoCopyOutline } from "react-icons/io5";
 import { useEffect, useState } from "react";
 import type { FC, ReactNode } from "react";
 
@@ -55,7 +56,7 @@ const CopyButton: FC<CopyButtonProps> = ({
     return () => clearTimeout(id);
   }, [isCopied]);
 
-  const Icon = isCopied ? CheckCheck : Copy;
+  const Icon = isCopied ? CheckCheck : IoCopyOutline;
 
   return (
     <button
@@ -68,7 +69,7 @@ const CopyButton: FC<CopyButtonProps> = ({
         handleCopyClick();
       }}
     >
-      <span>{children}</span>
+      {children}
       <Icon aria-hidden className={cn("size-[14px]", iconClassName)} />
     </button>
   );

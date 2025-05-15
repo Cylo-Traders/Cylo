@@ -28,7 +28,7 @@ const trusts = [
 
 const Testimonies = () => {
   return (
-    <div className="mb-16 py-10 md:mb-56 md:py-32">
+    <section id="trust" className="mb-16 py-10 md:mb-56 md:py-32">
       <Wrapper>
         <div className="grid grid-cols-1 gap-10 md:gap-20 lg:grid-cols-2 lg:gap-10">
           <div className="w-full">
@@ -45,7 +45,7 @@ const Testimonies = () => {
               {trusts.map((list, index) => (
                 <li key={index} className="mt-5 flex items-start gap-4">
                   <list.icon className="!size-6" />
-                  <div className="flex flex-col gap-1">
+                  <div className="flex flex-1 flex-col gap-1">
                     <p className="text-foreground text-base font-semibold">
                       {list.title}
                     </p>
@@ -62,9 +62,9 @@ const Testimonies = () => {
           </div>
 
           <div className="relative flex size-full items-center justify-end">
-            <div className="bg-secondary flex-1 rounded-3xl border p-6">
-              <div className="bg-background mb-6 rounded-2xl border p-6">
-                <div className="mb-4 flex items-center justify-between">
+            <div className="bg-secondary mx-auto flex-1 rounded-3xl border p-4 sm:p-6 md:max-w-[90%] lg:mr-0 lg:ml-auto">
+              <div className="bg-background mb-5 rounded-2xl border p-4 sm:mb-6 sm:p-6">
+                <div className="mb-3 flex items-center justify-between sm:mb-4">
                   <div className="flex items-center">
                     <div className="flex size-8 items-center justify-center rounded-full border">
                       <span className="text-xs font-bold">JD</span>
@@ -84,25 +84,25 @@ const Testimonies = () => {
                 </blockquote>
               </div>
 
-              <div className="mb-6 ml-4 flex items-center space-x-2">
+              <div className="mb-5 ml-4 flex items-center space-x-2 sm:mb-6">
                 <div className="mt-px size-2 animate-pulse rounded-full bg-green-600"></div>
                 <p className="text-sm text-green-600">Secured by Starknet</p>
               </div>
 
               <div className="grid grid-cols-3 gap-3 text-center">
-                <div className="bg-background rounded-2xl border p-3">
+                <div className="bg-background rounded-lg border p-3 sm:rounded-2xl">
                   <div className="text-xl font-bold text-green-600 sm:text-2xl">
                     100%
                   </div>
                   <div className="text-sm font-medium">Secure</div>
                 </div>
-                <div className="bg-background rounded-2xl border p-3">
+                <div className="bg-background rounded-lg border p-3 sm:rounded-2xl">
                   <div className="text-xl font-bold text-green-600 sm:text-2xl">
                     2.5%
                   </div>
                   <div className="text-sm font-medium">Fee</div>
                 </div>
-                <div className="bg-background rounded-2xl border p-3">
+                <div className="bg-background rounded-lg border p-3 sm:rounded-2xl">
                   <div className="text-xl font-bold text-green-600 sm:text-2xl">
                     24/7
                   </div>
@@ -113,7 +113,7 @@ const Testimonies = () => {
           </div>
         </div>
       </Wrapper>
-    </div>
+    </section>
   );
 };
 

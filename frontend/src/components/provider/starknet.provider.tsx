@@ -4,38 +4,21 @@ import type { FC } from "react";
 import { sepolia, mainnet } from "@starknet-react/chains";
 import {
   alchemyProvider,
-  argent,
-  braavos,
-  Connector,
   infuraProvider,
   lavaProvider,
   nethermindProvider,
+  publicProvider,
   reddioProvider,
   StarknetConfig,
   starkscan,
-  useInjectedConnectors,
 } from "@starknet-react/core";
-import { ArgentMobileConnector } from "starknetkit/argentMobile";
-import { WebWalletConnector } from "starknetkit/webwallet";
+import { connectors } from "@/lib/helpers/connectors";
 
 interface StarknetProviderProps {
   children: React.ReactNode;
 }
 
 const StarknetProvider: FC<StarknetProviderProps> = ({ children }) => {
-  const { connectors: injected } = useInjectedConnectors({
-    recommended: [argent(), braavos()],
-    includeRecommended: "always",
-  });
-
-  const connectors: Connector[] = [
-    ...injected,
-    new WebWalletConnector({
-      url: "https://web.argent.xyz",
-    }) as unknown as Connector,
-    new ArgentMobileConnector() as unknown as Connector,
-  ];
-
   const apiKey = process.env.NEXT_PUBLIC_API_KEY!;
   const nodeProvider = process.env.NEXT_PUBLIC_PROVIDER!;
 
@@ -48,8 +31,10 @@ const StarknetProvider: FC<StarknetProviderProps> = ({ children }) => {
     provider = lavaProvider({ apiKey });
   } else if (nodeProvider == "nethermind") {
     provider = nethermindProvider({ apiKey });
-  } else {
+  } else if (nodeProvider === "reddio") {
     provider = reddioProvider({ apiKey });
+  } else {
+    provider = publicProvider();
   }
 
   return (

@@ -18,16 +18,16 @@ const footerLinks = [
         path: "/",
       },
       {
-        label: "Features",
-        path: "/",
+        label: "Why Choose Us",
+        path: "/#why-choose-us",
       },
       {
         label: "How It Works",
-        path: "/",
+        path: "/#how-it-works",
       },
       {
         label: "Trust & Security",
-        path: "/",
+        path: "/#trust",
       },
       {
         label: "Marketplace",
@@ -97,12 +97,12 @@ const Footer = () => {
                   >
                     {link.routes.map((route) => (
                       <li key={route.label} className="mt-4">
-                        <Link
+                        <a
                           className="hover:text-foreground transition"
                           href={route.path}
                         >
                           {route.label}
-                        </Link>
+                        </a>
                       </li>
                     ))}
                   </ul>
@@ -136,14 +136,16 @@ const Footer = () => {
         <div className="mt-24 mb-20 flex w-full flex-col items-center justify-center gap-4 border-t pt-10 sm:h-[81px] sm:flex-row sm:items-end sm:justify-between sm:pt-0">
           <p className="flex items-center gap-3">
             <span className="text-sm font-medium">Powered by</span>{" "}
-            <Image
-              src="/assets/starknet.svg"
-              alt="starknet"
-              width={95}
-              height={24}
-              priority
-              quality={100}
-            />
+            <Link href="https://www.starknet.io/" target="_blank">
+              <Image
+                src="/assets/starknet.svg"
+                alt="starknet"
+                width={95}
+                height={24}
+                priority
+                quality={100}
+              />
+            </Link>
           </p>
 
           <p className="text-sm font-medium">

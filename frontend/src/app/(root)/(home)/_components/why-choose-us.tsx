@@ -27,7 +27,7 @@ const benefits = [
 
 const WhyChooseUs = () => {
   return (
-    <div className="mb-16 md:mb-56">
+    <section id="why-choose-us" className="mb-16 md:mb-56">
       <Wrapper className="space-y-12">
         <div className="w-full">
           <h2 className="text-primary max-w-[672px] text-2xl font-medium sm:text-3xl md:text-4xl lg:text-[40px]">
@@ -41,14 +41,11 @@ const WhyChooseUs = () => {
 
         <div className="lg:flex lg:items-center lg:justify-end">
           <div className="flex justify-center lg:w-1/2 lg:justify-end lg:pr-12">
-            <div
-              className="w-[33.75rem] flex-none lg:w-[45rem]"
-              style={{ opacity: 1, transform: "none" }}
-            >
-              <div className="relative flex aspect-719/680 w-full justify-center grayscale transition duration-500 hover:grayscale-0 lg:justify-end">
+            <div className="w-full flex-none md:w-[33.75rem] lg:w-[45rem]">
+              <div className="relative flex aspect-719/680 w-full justify-center transition duration-500 lg:justify-end">
                 <svg viewBox="0 0 655 680" fill="none" className="h-full">
                   <g clipPath="url(#:S1:-clip)" className="group">
-                    <g className="origin-center scale-100 transition duration-500 motion-safe:group-hover:scale-105">
+                    <g className="origin-center scale-100 transition delay-150 duration-700 motion-safe:group-hover:scale-110">
                       <foreignObject width="655" height="680">
                         <Image
                           alt=""
@@ -104,7 +101,7 @@ const WhyChooseUs = () => {
           </ul>
         </div>
       </Wrapper>
-    </div>
+    </section>
   );
 };
 

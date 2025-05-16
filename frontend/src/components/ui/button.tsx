@@ -43,13 +43,16 @@ function Button({
   asChild = false,
   isLoading = false,
   loadingText,
+  loadingClass,
   children,
+  disabled,
   ...props
 }: React.ComponentProps<"button"> &
   VariantProps<typeof buttonVariants> & {
     asChild?: boolean;
     isLoading?: boolean;
     loadingText?: string;
+    loadingClass?: string;
   }) {
   const Comp = asChild ? Slot : "button";
 
@@ -57,7 +60,7 @@ function Button({
     <Comp
       data-slot="button"
       className={cn(buttonVariants({ variant, size, className }))}
-      disabled={isLoading}
+      disabled={isLoading || disabled}
       {...(asChild && { asChild: true })}
       {...(asChild && { className: cn(className) })}
       {...(asChild && { "data-state": isLoading ? "loading" : undefined })}
@@ -79,7 +82,7 @@ function Button({
       {...props}
     >
       {isLoading ? (
-        <span className="flex items-center gap-3">
+        <span className={cn("flex items-center gap-3", loadingClass)}>
           <Loader className="!size-4 animate-spin" />
           {loadingText && loadingText}
         </span>

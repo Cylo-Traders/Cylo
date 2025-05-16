@@ -9,75 +9,96 @@ import Wrapper from "@/components/shared/wrapper";
 import { siteConfig } from "@/config/site.config";
 import { TbLeaf2 } from "react-icons/tb";
 
-const footerLinks = [
-  {
-    title: "Quick Links",
-    routes: [
-      {
-        label: "Home",
-        path: "/",
-      },
-      {
-        label: "Why Choose Us",
-        path: "/#why-choose-us",
-      },
-      {
-        label: "How It Works",
-        path: "/#how-it-works",
-      },
-      {
-        label: "Trust & Security",
-        path: "/#trust",
-      },
-      {
-        label: "Marketplace",
-        path: "/",
-      },
-    ],
-  },
-  {
-    title: "Legal",
-    routes: [
-      {
-        label: "Terms of Service",
-        path: "/",
-      },
-      {
-        label: "Privacy Policy",
-        path: "/",
-      },
-      {
-        label: "Cookie Policy",
-        path: "/",
-      },
-      {
-        label: "Disclaimers",
-        path: "/",
-      },
-    ],
-  },
-  {
-    title: "Contact",
-    routes: [
-      {
-        label: "About US",
-        path: "/",
-      },
-      {
-        label: "FAQ",
-        path: "/",
-      },
-      {
-        label: "Contact",
-        path: "/",
-      },
-      {
-        label: "Support",
-        path: "/",
-      },
-    ],
-  },
-];
+const footerLinks = {
+  routes: [
+    {
+      title: "Quick Links",
+      routes: [
+        {
+          label: "Home",
+          path: "/",
+        },
+        {
+          label: "Why Choose Us",
+          path: "/#why-choose-us",
+        },
+        {
+          label: "How It Works",
+          path: "/#how-it-works",
+        },
+        {
+          label: "Trust & Security",
+          path: "/#trust",
+        },
+        {
+          label: "Marketplace",
+          path: "/",
+        },
+      ],
+    },
+    {
+      title: "Legal",
+      routes: [
+        {
+          label: "Terms of Service",
+          path: "/",
+        },
+        {
+          label: "Privacy Policy",
+          path: "/",
+        },
+        {
+          label: "Cookie Policy",
+          path: "/",
+        },
+        {
+          label: "Disclaimers",
+          path: "/",
+        },
+      ],
+    },
+    {
+      title: "Contact",
+      routes: [
+        {
+          label: "About US",
+          path: "/",
+        },
+        {
+          label: "FAQ",
+          path: "/",
+        },
+        {
+          label: "Contact",
+          path: "/",
+        },
+        {
+          label: "Support",
+          path: "/",
+        },
+      ],
+    },
+  ],
+  socials: [
+    {
+      label: "AgricCylo - X (Twitter)",
+      icon: RiTwitterXLine,
+      path: "https://x.com/AgricCylo",
+    },
+    {
+      label: "Instagram",
+      icon: RxInstagramLogo,
+    },
+    {
+      label: "LinkedIn",
+      icon: PiLinkedinLogo,
+    },
+    {
+      label: "FaceBook",
+      icon: PiFacebookLogo,
+    },
+  ],
+};
 
 const Footer = () => {
   return (
@@ -86,7 +107,7 @@ const Footer = () => {
         <div className="grid grid-cols-1 gap-x-8 gap-y-16 lg:grid-cols-2">
           <nav>
             <ul role="list" className="grid grid-cols-2 gap-8 sm:grid-cols-3">
-              {footerLinks.map((link, index) => (
+              {footerLinks.routes.map((link, index) => (
                 <li key={index}>
                   <div className="font-display text-foreground text-sm font-semibold tracking-wider">
                     {link.title}
@@ -120,14 +141,26 @@ const Footer = () => {
                 <span>{siteConfig.title}.</span>
               </Link>
               <p className="text-muted-foreground mt-3 text-[15px] leading-[1.6]">
-                {siteConfig.ogDescription}
+                Building a fair and transparent agricultural marketplace on the
+                blockchain.
               </p>
 
               <div className="mt-6 flex items-center gap-5">
-                <RiTwitterXLine className="text-muted-foreground hover:text-primary size-6 cursor-pointer transition" />
-                <RxInstagramLogo className="text-muted-foreground hover:text-primary size-6 cursor-pointer transition" />
-                <PiLinkedinLogo className="text-muted-foreground hover:text-primary size-6 cursor-pointer transition" />
-                <PiFacebookLogo className="text-muted-foreground hover:text-primary size-6 cursor-pointer transition" />
+                {footerLinks.socials.map((social, index) => (
+                  <button
+                    key={index}
+                    disabled={!social.path}
+                    className="size-fit focus-visible:ring-0 focus-visible:outline-0 disabled:pointer-events-none disabled:opacity-50"
+                  >
+                    <Link
+                      title={social.label}
+                      href={social.path ?? "/"}
+                      target={social.path ? "_blank" : "_self"}
+                    >
+                      <social.icon className="text-muted-foreground hover:text-primary size-6 cursor-pointer transition" />
+                    </Link>
+                  </button>
+                ))}
                 <span className="bg-border h-px w-full flex-1" />
               </div>
             </div>

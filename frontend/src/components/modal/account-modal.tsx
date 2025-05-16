@@ -15,7 +15,7 @@ import {
 } from "@starknet-react/core";
 import { HiMiniArrowUpRight } from "react-icons/hi2";
 import { IoIosPower } from "react-icons/io";
-import { ArrowLeftRight } from "lucide-react";
+import { ArrowLeftRight, ChevronDown } from "lucide-react";
 import { constants } from "starknet";
 
 import {
@@ -39,6 +39,7 @@ import { isMainnet, toHexChainid } from "@/lib/helpers/chainId";
 import { formatTruncatedAddress } from "@/lib/helpers/format-address";
 import { STRKTokenAddress } from "@/lib/helpers/constants";
 import { toast } from "sonner";
+import { cn } from "@/lib/utils";
 
 const NETWORK_MAPPING: { [key: string]: string } = {
   mainnet: constants.NetworkName.SN_MAIN,
@@ -58,6 +59,8 @@ const networks = [
 
 const AccountModal: FC<PropsWithChildren> = ({ children }) => {
   const isMobile = useIsMobile();
+
+  const [showModal, setShowModal] = useState<boolean>(false);
 
   const { chain } = useNetwork();
   const { disconnect } = useDisconnect();
@@ -103,66 +106,88 @@ const AccountModal: FC<PropsWithChildren> = ({ children }) => {
   };
 
   return (
-    <DropdownMenu>
+    <DropdownMenu open={showModal} onOpenChange={setShowModal}>
       <DropdownMenuTrigger asChild>
         {children ?? (
-          <Button variant="outline" className="pl-2">
-            <div className="bg-secondary !size-6 overflow-clip rounded-full">
-              {!imageError && starkProfile?.profilePicture ? (
-                <Image
-                  priority
-                  quality={100}
-                  src={starkProfile?.profilePicture}
-                  className="!size-full rounded-full object-cover"
-                  width={24}
-                  height={24}
-                  alt="starknet profile"
-                  onError={() => setImageError(true)}
-                  unoptimized
-                  loader={({ src }: { src: string }) => {
-                    return src;
-                  }}
-                />
-              ) : (
-                <Blockies
-                  seed={address || ""}
-                  className="!size-full rounded-full object-cover"
-                />
-              )}
+          <div role="button" className="flex cursor-pointer items-center gap-2">
+            <div className="grid size-10 place-content-center rounded-full border">
+              <div className="bg-secondary size-8 rounded-full">
+                {!imageError && starkProfile?.profilePicture ? (
+                  <Image
+                    priority
+                    quality={100}
+                    src={starkProfile?.profilePicture}
+                    className="!size-full rounded-full object-cover"
+                    width={24}
+                    height={24}
+                    alt="starknet profile"
+                    onError={() => setImageError(true)}
+                    unoptimized
+                    loader={({ src }: { src: string }) => {
+                      return src;
+                    }}
+                  />
+                ) : (
+                  <Blockies
+                    seed={address || ""}
+                    className="!size-full rounded-full object-cover"
+                  />
+                )}
+              </div>
             </div>
 
-            <span>{formatTruncatedAddress(address as string)}</span>
-          </Button>
+            <div className="hidden flex-col sm:flex">
+              <span className="text-sm font-medium">
+                {starkProfile?.name ?? "Anonymous"}
+              </span>
+              <span className="text-xs font-normal">
+                {formatTruncatedAddress(address as string)}
+              </span>
+            </div>
+
+            <ChevronDown
+              className={cn("size-4 transition duration-75 sm:ml-2", {
+                "-rotate-180": showModal,
+              })}
+            />
+          </div>
         )}
       </DropdownMenuTrigger>
       <DropdownMenuContent
         align={isMobile ? "center" : "end"}
-        className="mt-2 mr-6 sm:mr-0 md:w-96"
+        className="mt-2 mr-6 sm:mr-0 md:w-[350px]"
       >
         <div className="flex items-center justify-between gap-4 p-4">
-          <div className="flex items-center gap-4">
-            <div className="bg-secondary !size-10 rounded-full">
-              {!imageError && starkProfile?.profilePicture ? (
-                <Image
-                  priority
-                  quality={100}
-                  src={starkProfile?.profilePicture}
-                  className="!size-full rounded-full object-cover"
-                  width={24}
-                  height={24}
-                  alt="starknet profile"
-                  onError={() => setImageError(true)}
-                />
-              ) : (
-                <Blockies
-                  seed={address || ""}
-                  className="!size-full rounded-full object-cover"
-                />
-              )}
+          <div className="flex items-center gap-2">
+            <div className="grid size-12 place-content-center rounded-full border">
+              <div className="bg-secondary size-10 rounded-full">
+                {!imageError && starkProfile?.profilePicture ? (
+                  <Image
+                    priority
+                    quality={100}
+                    src={starkProfile?.profilePicture}
+                    className="!size-full rounded-full object-cover"
+                    width={24}
+                    height={24}
+                    alt="starknet profile"
+                    onError={() => setImageError(true)}
+                    unoptimized
+                    loader={({ src }: { src: string }) => {
+                      return src;
+                    }}
+                  />
+                ) : (
+                  <Blockies
+                    seed={address || ""}
+                    className="!size-full rounded-full object-cover"
+                  />
+                )}
+              </div>
             </div>
+
             <div className="flex flex-col gap-0.5">
               <span className="text-sm font-medium">
-                {starkProfile?.name ?? "..."}
+                {starkProfile?.name ?? "Anonymous"}
               </span>
               <span className="text-xs font-normal">
                 {formatTruncatedAddress(address as string)}
@@ -208,9 +233,10 @@ const AccountModal: FC<PropsWithChildren> = ({ children }) => {
             </Button>
           </div>
         </div>
+
         <DropdownMenuSeparator />
 
-        <div className="flex flex-col items-center gap-1 py-6 text-center select-none">
+        <div className="flex flex-col items-center gap-1 py-10 text-center select-none">
           <span className="text-muted-foreground text-[11px] font-medium">
             TOTAL BALANCE
           </span>
@@ -233,7 +259,7 @@ const AccountModal: FC<PropsWithChildren> = ({ children }) => {
           <p className="pl-2 text-sm font-medium">Select Network</p>
 
           <Select value={selectedNetwork} onValueChange={handleNetworkChange}>
-            <SelectTrigger className="!h-11 w-[130px] sm:w-[180px]">
+            <SelectTrigger className="!h-11 w-[130px] sm:w-[160px]">
               <SelectValue
                 placeholder={
                   selectedNetwork

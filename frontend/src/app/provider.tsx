@@ -1,6 +1,9 @@
 import type { FC, ReactNode } from "react";
-import StarknetProvider from "@/components/provider/starknet.provider";
+import { Analytics } from "@vercel/analytics/next";
+import NextJsToploader from "nextjs-toploader";
+
 import { Toaster } from "@/components/ui/sonner";
+import StarknetProvider from "@/components/provider/starknet.provider";
 
 interface GlobalProviderProps {
   children: ReactNode;
@@ -9,7 +12,13 @@ interface GlobalProviderProps {
 const GlobalProvider: FC<GlobalProviderProps> = ({ children }) => {
   return (
     <StarknetProvider>
-      <Toaster richColors />
+      <Analytics />
+      <Toaster richColors theme="light" />
+      <NextJsToploader
+        showSpinner={false}
+        showForHashAnchor={false}
+        showAtBottom={false}
+      />
       {children}
     </StarknetProvider>
   );

@@ -3,6 +3,7 @@ import { RiArrowRightUpLine } from "react-icons/ri";
 import Wrapper from "@/components/shared/wrapper";
 import { Button } from "@/components/ui/button";
 import { siteConfig } from "@/config/site.config";
+import Link from "next/link";
 
 const CTA = () => {
   return (
@@ -22,7 +23,7 @@ const CTA = () => {
                 </p>
               </div>
 
-              <div className="mt-10 flex flex-col items-center gap-2 border-t border-white/10 pt-10 sm:flex-row">
+              <div className="mt-10 flex flex-col items-center gap-4 border-t border-white/10 pt-10 sm:flex-row sm:gap-2">
                 <Button
                   size="lg"
                   variant={"secondary"}
@@ -30,14 +31,16 @@ const CTA = () => {
                 >
                   <span>Get Started</span>
                 </Button>
-                <Button
-                  size="lg"
-                  variant={"link"}
-                  className="!text-secondary group w-full !px-6 sm:w-max"
-                >
-                  <span>Explore Marketplace</span>
-                  <RiArrowRightUpLine className="!size-4 transition-all ease-in-out group-hover:rotate-45" />
-                </Button>
+                <Link href="/market">
+                  <Button
+                    size="lg"
+                    variant={"link"}
+                    className="!text-secondary group w-full !px-6 sm:w-max"
+                  >
+                    <span>Explore Marketplace</span>
+                    <RiArrowRightUpLine className="!size-4 transition-all ease-in-out group-hover:rotate-45" />
+                  </Button>
+                </Link>
               </div>
             </div>
           </div>

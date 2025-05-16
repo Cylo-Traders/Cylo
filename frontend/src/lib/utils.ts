@@ -9,3 +9,15 @@ export function formatCurrency(currency: number) {
   const amount = currency / 1e18;
   return amount || 0;
 }
+
+export const categories = [
+  { label: "All Categories", value: "all" },
+  { label: "Fruits", value: "fruits" },
+  { label: "Vegetables", value: "vegetables" },
+  { label: "Grains", value: "grains" },
+  { label: "Dairy", value: "dairy" },
+  { label: "Meat", value: "meat" },
+  { label: "Beverages", value: "beverages" },
+  { label: "Oils", value: "oils" },
+  { label: "Sweeteners", value: "sweeteners" },
+];

@@ -7,6 +7,7 @@ import { siteConfig } from "@/config/site.config";
 import Wrapper from "@/components/shared/wrapper";
 import ConnectWallet from "@/components/shared/connect";
 import { Button } from "@/components/ui/button";
+import { Separator } from "@/components/ui/separator";
 
 const Header = () => {
   return (
@@ -19,9 +20,10 @@ const Header = () => {
           <TbLeaf2 className="!size-7" />
           <span>{siteConfig.title}.</span>
         </Link>
-        <div className="flex items-center justify-end gap-2 sm:gap-4">
+        <div className="flex items-center justify-end">
           <ConnectWallet />
-          <Button size="icon" variant={"ghost"}>
+          <Separator orientation="vertical" className="mx-4 !h-5" />
+          <Button size="icon" variant={"outline"}>
             <HiMiniBars2 className="!size-5" />
           </Button>
         </div>

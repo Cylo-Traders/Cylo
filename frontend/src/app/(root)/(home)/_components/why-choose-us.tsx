@@ -64,7 +64,7 @@ const WhyChooseUs = () => {
                     <use
                       href="#:S1:-shape"
                       strokeWidth="2"
-                      className="stroke-neutral-950/10"
+                      className="stroke-muted-foreground/50"
                     ></use>
                   </g>
                   <defs>
@@ -89,7 +89,7 @@ const WhyChooseUs = () => {
             {benefits.map((benefit, index) => (
               <li key={index} className="group mt-10 first:mt-0">
                 <div style={{ opacity: 1, transform: "none" }}>
-                  <div className="relative pt-10 group-first:pt-0 before:absolute before:top-0 before:left-0 before:h-px before:w-6 before:bg-neutral-950 group-first:before:hidden after:absolute after:top-0 after:right-0 after:left-8 after:h-px after:bg-neutral-950/10 group-first:after:hidden">
+                  <div className="after:bg-border relative pt-10 group-first:pt-0 before:absolute before:top-0 before:left-0 before:h-px before:w-6 before:bg-neutral-950 group-first:before:hidden after:absolute after:top-0 after:right-0 after:left-8 after:h-px group-first:after:hidden">
                     <strong className="text-foreground font-semibold">
                       {benefit.title}{" "}
                     </strong>

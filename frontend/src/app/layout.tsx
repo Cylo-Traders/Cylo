@@ -11,7 +11,7 @@ const monaSans = Mona_Sans({
 });
 
 export const metadata: Metadata = {
-  title: siteConfig.name,
+  title: siteConfig.title,
   description: siteConfig.description,
   openGraph: {
     title: siteConfig.ogTitle,

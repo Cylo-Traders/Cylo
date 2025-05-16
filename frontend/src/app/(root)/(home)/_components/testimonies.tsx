@@ -9,13 +9,13 @@ const trusts = [
   {
     title: "Secure Smart Contracts",
     description:
-      "Our code is audited by leading security firms for maximum protection.",
+      "Our smart contract system ensures secure and transparent transactions between farmers and buyers.",
     icon: IoShieldHalf,
   },
   {
     title: "Escrow Protection",
     description:
-      "Funds are only released when both parties confirm successful delivery.",
+      "Payments are held in escrow until delivery is confirmed, ensuring trust for both parties.",
     icon: GoLock,
   },
   {

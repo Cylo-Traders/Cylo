@@ -24,7 +24,7 @@ Cylo is a decentralized payment platform built on Starknet, enabling farmers and
 * Purchase: Consumer pays
 * Escrow: Starknet contract holds funds until delivery.
 * Delivery: Consumer confirms receipt
-* Payout: Contract releases
+* Payout: Contract releases funds to seller's address.
 
 ### Smart Contract and Deployment 
 * Language - Cairo

@@ -25,36 +25,35 @@ const howItWorksData = [
 
 const HowItWorks = () => {
   return (
-    <section id="how-it-works" className="mb-16 md:mb-56">
-      <Wrapper className="space-y-12">
-        <div className="w-full">
-          <h2 className="text-primary max-w-[672px] text-2xl font-medium sm:text-3xl md:text-4xl lg:text-[40px]">
-            How {siteConfig.title} Works
-          </h2>
-          <p className="text-muted-foreground mt-4 max-w-[672px] text-base font-normal md:text-lg lg:leading-[1.5]">
-            Our platform makes agricultural trading simple, secure, and
-            transparent.
-          </p>
-        </div>
+    <section id="how-it-works" className="mb-16 md:mb-60">
+      <Wrapper>
+        <h2 className="text-foreground max-w-[672px] text-2xl leading-none font-semibold sm:text-3xl md:text-4xl lg:text-[40px]">
+          How {siteConfig.title} Works
+        </h2>
+        <p className="text-muted-foreground mt-4 max-w-[672px] text-base font-normal md:text-lg lg:leading-[1.5]">
+          Our platform makes agricultural trading simple, secure, and
+          transparent.
+        </p>
+      </Wrapper>
 
-        <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
-          {howItWorksData.map((item, index) => (
-            <div
-              key={index}
-              className="bg-background rounded-3xl border p-6 transition-all delay-150 duration-300 hover:-translate-y-3 hover:scale-105 hover:shadow-md lg:p-8"
-            >
-              <div className="bg-secondary mb-4 flex size-20 items-center justify-center rounded-full">
-                <item.icon className="text-primary size-9" />
-              </div>
-              <h3 className="font-display mt-6 text-xl font-semibold md:text-2xl">
-                {item.title}
-              </h3>
-              <p className="text-muted-foreground mt-4 text-base leading-[1.6]">
-                {item.description}
-              </p>
+      <Wrapper
+        max2
+        className="mt-12 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3"
+      >
+        {howItWorksData.map((item, index) => (
+          <div
+            key={index}
+            className="flex-1 rounded-[50px] bg-[#FCCD29] p-8 shadow-lg transition-all delay-150 duration-300 md:hover:-translate-y-3 md:hover:scale-105 md:hover:shadow-2xl lg:px-[38px] lg:py-[51px]"
+          >
+            <div className="bg-foreground mb-4 flex size-[100px] items-center justify-center rounded-full">
+              <item.icon className="size-10 text-white" />
             </div>
-          ))}
-        </div>
+            <h3 className="font-display mt-16 mb-8 max-w-[246px] text-lg font-semibold md:text-xl">
+              {item.title}
+            </h3>
+            <p className="text-base">{item.description}</p>
+          </div>
+        ))}
       </Wrapper>
     </section>
   );

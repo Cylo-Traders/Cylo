@@ -1,9 +1,10 @@
 import { RiArrowRightUpLine } from "react-icons/ri";
 
 import Wrapper from "@/components/shared/wrapper";
-import { Button } from "@/components/ui/button";
+import { Button, buttonVariants } from "@/components/ui/button";
 import { siteConfig } from "@/config/site.config";
 import Link from "next/link";
+import { Separator } from "@/components/ui/separator";
 
 const CTA = () => {
   return (
@@ -23,24 +24,22 @@ const CTA = () => {
                 </p>
               </div>
 
-              <div className="mt-10 flex flex-col items-center gap-4 border-t border-white/10 pt-10 sm:flex-row sm:gap-2">
-                <Button
-                  size="lg"
-                  variant={"secondary"}
-                  className="w-full !px-6 sm:w-max"
+              <Separator className="bg-border/30 my-10" />
+
+              <div className="flex w-full flex-col items-center gap-4 sm:flex-row sm:gap-2">
+                <Link
+                  href="/marketplace"
+                  className={buttonVariants({
+                    size: "lg",
+                    variant: "secondary",
+                  })}
                 >
-                  <span>Get Started</span>
-                </Button>
-                <Link href="/market">
-                  <Button
-                    size="lg"
-                    variant={"link"}
-                    className="!text-secondary group w-full !px-6 sm:w-max"
-                  >
-                    <span>Explore Marketplace</span>
-                    <RiArrowRightUpLine className="!size-4 transition-all ease-in-out group-hover:rotate-45" />
-                  </Button>
+                  <span>Explore Marketplace</span>
                 </Link>
+                <Button variant="link" size="lg" className="group !text-white">
+                  <span>Get Started</span>
+                  <RiArrowRightUpLine className="size-5 transition-all ease-in-out group-hover:rotate-45 sm:!size-6" />
+                </Button>
               </div>
             </div>
           </div>

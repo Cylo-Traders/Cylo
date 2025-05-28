@@ -3,6 +3,12 @@ export const siteConfig = {
   description:
     "A peer-to-peer marketplace for farmers and consumers to buy and sell agricultural products directly, eliminating the need for middlemen.",
 
+  icons: {
+    icon: "/favicon.svg",
+    shortcut: "/favicon.svg",
+    apple: "/favicon.svg",
+  },
+
   // Open Graph metadata
   ogTitle: "Cylo",
   ogDescription:

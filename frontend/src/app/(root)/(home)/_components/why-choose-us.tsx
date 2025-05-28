@@ -27,10 +27,10 @@ const benefits = [
 
 const WhyChooseUs = () => {
   return (
-    <section id="why-choose-us" className="mb-16 md:mb-56">
+    <section id="why-choose-us" className="mb-16 md:mb-40">
       <Wrapper className="space-y-12">
         <div className="w-full">
-          <h2 className="text-primary max-w-[672px] text-2xl font-medium sm:text-3xl md:text-4xl lg:text-[40px]">
+          <h2 className="text-foreground max-w-[672px] text-2xl leading-none font-semibold sm:text-3xl md:text-4xl lg:text-[40px]">
             Why Choose {siteConfig.title}?
           </h2>
           <p className="text-muted-foreground mt-4 max-w-[672px] text-base font-normal md:text-lg lg:leading-[1.5]">

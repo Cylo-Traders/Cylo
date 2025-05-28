@@ -1,14 +1,10 @@
 import type { Metadata } from "next";
-import { Mona_Sans } from "next/font/google";
+
 import "./globals.css";
 import GlobalProvider from "./provider";
 import { cn } from "@/lib/utils";
 import { siteConfig } from "@/config/site.config";
-
-const monaSans = Mona_Sans({
-  variable: "--font-mona-sans",
-  subsets: ["latin"],
-});
+import { montserratAlternates } from "@/fonts";
 
 export const metadata: Metadata = {
   title: siteConfig.title,
@@ -18,6 +14,7 @@ export const metadata: Metadata = {
     description: siteConfig.ogDescription,
     url: siteConfig.url,
   },
+  icons: siteConfig.icons,
   twitter: {
     card: (siteConfig.tCard ?? "summary_large_image") as
       | "summary_large_image"
@@ -39,7 +36,7 @@ export default function RootLayout({
       <body
         className={cn(
           "bg-background min-h-screen font-sans antialiased",
-          monaSans.className,
+          montserratAlternates.className,
         )}
       >
         <GlobalProvider>{children}</GlobalProvider>

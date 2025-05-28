@@ -1,9 +1,9 @@
-import MarketplaceBanner from "./components/banner";
+import MarketplaceBanner from "./components/hero-section";
 import Products from "./components/products";
 
 export default function MarketplacePage() {
   return (
-    <div className="bg-secondary mb-16 flex flex-col md:mb-40">
+    <div className="flex flex-col">
       <MarketplaceBanner />
       <Products />
     </div>

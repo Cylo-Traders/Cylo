@@ -28,7 +28,10 @@ const trusts = [
 
 const Testimonies = () => {
   return (
-    <section id="trust" className="mb-16 py-10 md:mb-56 md:py-32">
+    <section
+      id="trust"
+      className="bg-secondary/50 mb-16 border-y py-10 md:mb-40 md:py-32"
+    >
       <Wrapper>
         <div className="grid grid-cols-1 gap-10 md:gap-20 lg:grid-cols-2 lg:gap-10">
           <div className="w-full">
@@ -62,11 +65,11 @@ const Testimonies = () => {
           </div>
 
           <div className="relative flex size-full items-center justify-end">
-            <div className="bg-secondary mx-auto flex-1 rounded-3xl border p-4 sm:p-6 md:max-w-[90%] lg:mr-0 lg:ml-auto">
-              <div className="bg-background mb-5 rounded-2xl border p-4 sm:mb-6 sm:p-6">
+            <div className="bg-background mx-auto flex-1 rounded-3xl border p-4 sm:p-6 md:max-w-[90%] lg:mr-0 lg:ml-auto">
+              <div className="bg-secondary mb-5 rounded-2xl border p-4 sm:mb-6 sm:p-6">
                 <div className="mb-3 flex items-center justify-between sm:mb-4">
                   <div className="flex items-center">
-                    <div className="flex size-8 items-center justify-center rounded-full border">
+                    <div className="bg-background flex size-8 items-center justify-center rounded-full border">
                       <span className="text-xs font-bold">JD</span>
                     </div>
                     <span className="ml-3 font-medium">Farmer John Doe</span>
@@ -90,19 +93,19 @@ const Testimonies = () => {
               </div>
 
               <div className="grid grid-cols-3 gap-3 text-center">
-                <div className="bg-background rounded-lg border p-3 sm:rounded-2xl">
+                <div className="bg-secondary rounded-lg border p-3 sm:rounded-2xl">
                   <div className="text-xl font-bold text-green-600 sm:text-2xl">
                     100%
                   </div>
                   <div className="text-sm font-medium">Secure</div>
                 </div>
-                <div className="bg-background rounded-lg border p-3 sm:rounded-2xl">
+                <div className="bg-secondary rounded-lg border p-3 sm:rounded-2xl">
                   <div className="text-xl font-bold text-green-600 sm:text-2xl">
                     2.5%
                   </div>
                   <div className="text-sm font-medium">Fee</div>
                 </div>
-                <div className="bg-background rounded-lg border p-3 sm:rounded-2xl">
+                <div className="bg-secondary rounded-lg border p-3 sm:rounded-2xl">
                   <div className="text-xl font-bold text-green-600 sm:text-2xl">
                     24/7
                   </div>

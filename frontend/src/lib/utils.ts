@@ -10,6 +10,13 @@ export function formatCurrency(currency: number) {
   return amount || 0;
 }
 
+export function getInitials(name: string): string {
+  if (!name) return "";
+  const parts = name.trim().split(/\s+/);
+  const initials = parts.map((part) => part[0].toUpperCase()).slice(0, 2);
+  return initials.join("");
+}
+
 export const categories = [
   { label: "All Categories", value: "all" },
   { label: "Fruits", value: "fruits" },

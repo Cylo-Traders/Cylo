@@ -63,7 +63,7 @@ const AccountModal: FC<PropsWithChildren> = ({ children }) => {
   const [showModal, setShowModal] = useState<boolean>(false);
 
   const { chain } = useNetwork();
-  const { disconnect } = useDisconnect();
+  const { disconnectAsync } = useDisconnect();
   const { address, chainId } = useAccount();
   const [imageError, setImageError] = useState(false);
   const [showETH, setShowETH] = useState(false);
@@ -102,6 +102,17 @@ const AccountModal: FC<PropsWithChildren> = ({ children }) => {
     } catch (err) {
       console.error(err);
       toast.error(`Failed to switch to ${networkName}`);
+    }
+  };
+
+  const handleDisconnect = async () => {
+    try {
+      await disconnectAsync();
+    } catch (error) {
+      console.error("Disconnection failed:", error);
+      toast.error(
+        error instanceof Error ? error.message : "Disconnection failed",
+      );
     }
   };
 
@@ -157,7 +168,7 @@ const AccountModal: FC<PropsWithChildren> = ({ children }) => {
         align={isMobile ? "center" : "end"}
         className="mt-2 mr-6 sm:mr-0 md:w-[350px]"
       >
-        <div className="flex items-center justify-between gap-4 p-4">
+        <div className="flex items-center justify-between gap-4 px-4 py-2">
           <div className="flex items-center gap-2">
             <div className="grid size-12 place-content-center rounded-full border">
               <div className="bg-secondary size-10 rounded-full">
@@ -212,20 +223,25 @@ const AccountModal: FC<PropsWithChildren> = ({ children }) => {
                   : `https://sepolia.voyager.online/contract/${address}`
               }
               target="_blank"
+              title={`View ${formatTruncatedAddress(address as string)} on Explorer`}
             >
               <Button
                 size={"icon"}
                 variant={"secondary"}
                 className="!rounded-sm"
+                title={`View ${formatTruncatedAddress(address as string)} on Explorer`}
               >
                 <HiMiniArrowUpRight className="!size-5" />
-                <span className="sr-only">View on Explorer</span>
+                <span className="sr-only">
+                  View {formatTruncatedAddress(address as string)} on Explorer
+                </span>
               </Button>
             </Link>
             <Button
               size={"icon"}
               variant={"secondary"}
-              onClick={() => disconnect()}
+              onClick={handleDisconnect}
+              title="Disconnect"
               className="!bg-destructive/5 !text-destructive !rounded-sm"
             >
               <IoIosPower className="!size-5" />
@@ -236,7 +252,7 @@ const AccountModal: FC<PropsWithChildren> = ({ children }) => {
 
         <DropdownMenuSeparator />
 
-        <div className="flex flex-col items-center gap-1 py-10 text-center select-none">
+        <div className="flex flex-col items-center gap-1 py-5 text-center select-none">
           <span className="text-muted-foreground text-[11px] font-medium">
             TOTAL BALANCE
           </span>

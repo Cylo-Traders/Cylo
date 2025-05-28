@@ -1,8 +1,13 @@
+"use client";
+
+import Link from "next/link";
 import Image from "next/image";
 import type { FC } from "react";
+import { toast } from "sonner";
 import { PropsWithChildren, useState } from "react";
 import { Connector, useConnect } from "@starknet-react/core";
 import { MdKeyboardArrowRight } from "react-icons/md";
+import { IoWalletOutline } from "react-icons/io5";
 
 import {
   Dialog,
@@ -13,13 +18,14 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
+import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import { siteConfig } from "@/config/site.config";
-import Link from "next/link";
 
 const WalletModal: FC<PropsWithChildren> = ({ children }) => {
   const [showModal, setShowModal] = useState<boolean>(false);
-  const { connectors, connectAsync, pendingConnector } = useConnect();
+  const { connectors, connectAsync, pendingConnector, isPending } =
+    useConnect();
 
   const getIconSource = (icon: string | { dark: string; light: string }) => {
     if (typeof icon === "string") {
@@ -36,9 +42,14 @@ const WalletModal: FC<PropsWithChildren> = ({ children }) => {
   const handleConnect = async (connector: Connector) => {
     try {
       await connectAsync({ connector });
-      setShowModal(false);
+      toast.success("Wallet connected successfully!");
     } catch (error) {
       console.error("Connection failed:", error);
+      toast.error(error instanceof Error ? error.message : "Connection failed");
+    } finally {
+      setTimeout(() => {
+        setShowModal(false);
+      }, 500);
     }
   };
 
@@ -64,7 +75,16 @@ const WalletModal: FC<PropsWithChildren> = ({ children }) => {
   return (
     <Dialog open={showModal} onOpenChange={setShowModal}>
       <DialogTrigger asChild>
-        {children ?? <Button>Connect Wallet</Button>}
+        {children ? (
+          children
+        ) : (
+          <div>
+            <Button className="hidden sm:inline-flex">Connect Wallet</Button>
+            <Button size={"icon"} className="inline-flex sm:hidden">
+              <IoWalletOutline className="!size-5" />
+            </Button>
+          </div>
+        )}
       </DialogTrigger>
       <DialogContent className="sm:max-w-[425px]">
         <DialogHeader>
@@ -87,38 +107,39 @@ const WalletModal: FC<PropsWithChildren> = ({ children }) => {
 
                 return (
                   <Button
-                    size={"lg"}
-                    variant={"secondary"}
-                    className="group w-full items-center justify-between !gap-3 !px-4"
                     key={connector.id ?? index}
-                    isLoading={pendingConnector?.id === connector.id}
+                    variant="outline"
+                    size="lg"
+                    className="!justify-start !px-5"
+                    isLoading={
+                      isPending && pendingConnector?.id === connector.id
+                    }
+                    disabled={isPending}
                     loadingText={`Connecting ${pendingConnector?.name}...`}
                     onClick={() => handleConnect(connector)}
                   >
-                    <div className="flex items-center gap-3">
-                      <div className="!size-5 overflow-hidden rounded-[5px]">
-                        {isSvg ? (
-                          <div
-                            className="!size-5 object-cover"
-                            dangerouslySetInnerHTML={{ __html: src ?? "" }}
-                          />
-                        ) : src ? (
-                          <Image
-                            src={src}
-                            alt={connector.name}
-                            priority
-                            quality={100}
-                            width={35}
-                            height={35}
-                            className="!size-full object-cover"
-                            loader={({ src }: { src: string }) => {
-                              return src;
-                            }}
-                          />
-                        ) : null}
-                      </div>
-                      <span>{connector.name}</span>
+                    <div className="!size-5 overflow-hidden rounded-[5px]">
+                      {isSvg ? (
+                        <div
+                          className="!size-5 object-cover text-xl"
+                          dangerouslySetInnerHTML={{ __html: src ?? "" }}
+                        />
+                      ) : src ? (
+                        <Image
+                          src={src}
+                          alt={connector.name}
+                          priority
+                          quality={100}
+                          width={35}
+                          height={35}
+                          className="!size-full object-cover"
+                          loader={({ src }: { src: string }) => {
+                            return src;
+                          }}
+                        />
+                      ) : null}
                     </div>
+                    <span>{connector.name}</span>
                   </Button>
                 );
               })}
@@ -140,11 +161,14 @@ const WalletModal: FC<PropsWithChildren> = ({ children }) => {
                     key={connector.id ?? index}
                     href={getInstallUrl(connector.id)}
                     target="_blank"
+                    className={cn("flex-1", {
+                      "pointer-events-none opacity-80": isPending,
+                    })}
                   >
                     <Button
-                      size={"lg"}
-                      variant={"secondary"}
-                      className="group w-full items-center justify-between !gap-3 !px-4"
+                      size="lg"
+                      variant="outline"
+                      className="group w-full !justify-between !px-5"
                     >
                       <div className="flex items-center gap-3">
                         <div className="!size-5 overflow-hidden rounded-[5px]">

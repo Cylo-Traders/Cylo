@@ -1,0 +1,58 @@
+[
+  {
+    "id": "1",
+    "image": "https://images.unsplash.com/photo-1668532696480-911dae9cd0a7?q=80&w=3687&auto=format&fit=crop&ixlib=rb-4.1.0",
+    "title": "Basket of tomatos",
+    "price": 12.99,
+    "available": true,
+    "ratings": 5,
+    "farmer": {
+      "name": "John Doe",
+      "username": "john_doe",
+      "avatar": "https://images.unsplash.com/photo-1626029322280-ba48ba381345?q=80&w=3347&auto=format&fit=crop&ixlib=rb-4.1.0",
+      "country": "Nigeria"
+    }
+  },
+  {
+    "id": "2",
+    "image": "https://images.unsplash.com/photo-1736143160118-202a65d345b3?q=80&w=3396&auto=format&fit=crop&ixlib=rb-4.1.0",
+    "title": "Green pepper",
+    "price": 8.5,
+    "available": false,
+    "ratings": 3,
+    "farmer": {
+      "name": "Jane Smith",
+      "username": "jane_smith",
+      "avatar": "https://plus.unsplash.com/premium_photo-1663040294799-04609cd9e92b?q=80&w=3687&auto=format&fit=crop&ixlib=rb-4.1.0",
+      "country": "Kenya"
+    }
+  },
+  {
+    "id": "3",
+    "image": "https://images.unsplash.com/photo-1567306226416-28f0efdc88ce?q=80&w=3360&auto=format&fit=crop&ixlib=rb-4.1.0",
+    "title": "Fresh & Ripe Apples",
+    "price": 15.75,
+    "available": true,
+    "ratings": 4,
+    "farmer": {
+      "name": "Samuel Okoro",
+      "username": "sam_okoro",
+      "avatar": "https://images.unsplash.com/photo-1618151313441-82f7c5e92d44?q=80&w=3388&auto=format&fit=crop&ixlib=rb-4.1.0",
+      "country": "Nigeria"
+    }
+  },
+  {
+    "id": "4",
+    "image": "https://images.unsplash.com/photo-1582515073490-39981397c445?q=80&w=3300&auto=format&fit=crop&ixlib=rb-4.1.0",
+    "title": "Carrots bundle",
+    "price": 9.25,
+    "available": true,
+    "ratings": 5,
+    "farmer": {
+      "name": "Fatima Hassan",
+      "username": "fatima_h",
+      "avatar": "https://images.unsplash.com/photo-1614288337597-e7dc580e5b29?q=80&w=3312&auto=format&fit=crop&ixlib=rb-4.1.0",
+      "country": "Ghana"
+    }
+  }
+]

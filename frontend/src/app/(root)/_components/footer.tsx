@@ -7,7 +7,7 @@ import { PiFacebookLogo } from "react-icons/pi";
 
 import Wrapper from "@/components/shared/wrapper";
 import { siteConfig } from "@/config/site.config";
-import { TbLeaf2 } from "react-icons/tb";
+import { Separator } from "@/components/ui/separator";
 
 const footerLinks = {
   routes: [
@@ -102,24 +102,21 @@ const footerLinks = {
 
 const Footer = () => {
   return (
-    <footer className="flex w-full flex-col">
-      <Wrapper>
+    <footer className="bg-foreground flex w-full flex-col text-white">
+      <Wrapper className="flex flex-col pt-20 pb-10 sm:pb-16">
         <div className="grid grid-cols-1 gap-x-8 gap-y-16 lg:grid-cols-2">
           <nav>
             <ul role="list" className="grid grid-cols-2 gap-8 sm:grid-cols-3">
               {footerLinks.routes.map((link, index) => (
                 <li key={index}>
-                  <div className="font-display text-foreground text-sm font-semibold tracking-wider">
+                  <div className="font-display text-lg font-semibold tracking-wider">
                     {link.title}
                   </div>
-                  <ul
-                    role="list"
-                    className="text-muted-foreground mt-4 text-sm"
-                  >
+                  <ul role="list" className="mt-4 text-sm">
                     {link.routes.map((route) => (
                       <li key={route.label} className="mt-4">
                         <a
-                          className="hover:text-foreground transition"
+                          className="hover:text-primary transition"
                           href={route.path}
                         >
                           {route.label}
@@ -132,15 +129,21 @@ const Footer = () => {
             </ul>
           </nav>
           <div className="flex lg:justify-end">
-            <div className="max-w-[363px]">
-              <Link
-                href="/"
-                className="flex w-fit items-center gap-2 text-xl font-extrabold"
-              >
-                <TbLeaf2 className="!size-7" />
-                <span>{siteConfig.title}.</span>
-              </Link>
-              <p className="text-muted-foreground mt-3 text-[15px] leading-[1.6]">
+            <div className="w-full sm:max-w-[363px]">
+              <div className="flex items-center justify-start md:w-full md:max-w-[180px] lg:max-w-[240px]">
+                <Link href="/" className="-ml-1 w-fit">
+                  <Image
+                    src="/logo-light.svg"
+                    alt={siteConfig.title}
+                    height={49}
+                    width={131}
+                    priority
+                    quality={100}
+                    className="!h-[34px] !w-[100px] object-contain sm:h-[49px] sm:w-[131px]"
+                  />
+                </Link>
+              </div>
+              <p className="mt-3 text-[15px] leading-[1.6]">
                 Building a fair and transparent agricultural marketplace on the
                 blockchain.
               </p>
@@ -157,21 +160,22 @@ const Footer = () => {
                       href={social.path ?? "/"}
                       target={social.path ? "_blank" : "_self"}
                     >
-                      <social.icon className="text-muted-foreground hover:text-primary size-6 cursor-pointer transition" />
+                      <social.icon className="size-6 cursor-pointer transition" />
                     </Link>
                   </button>
                 ))}
-                <span className="bg-border h-px w-full flex-1" />
+                <span className="bg-border/30 h-px w-full flex-1" />
               </div>
             </div>
           </div>
         </div>
-        <div className="mt-24 mb-20 flex w-full flex-col items-center justify-center gap-4 border-t pt-10 sm:h-[81px] sm:flex-row sm:items-end sm:justify-between sm:pt-0">
+        <Separator className="bg-border/30 my-10 sm:my-16" />
+        <div className="border-t-border/30 flex w-full flex-col items-center justify-center gap-4 sm:flex-row sm:items-end sm:justify-between">
           <p className="flex items-center gap-3">
             <span className="text-sm font-medium">Powered by</span>{" "}
             <Link href="https://www.starknet.io/" target="_blank">
               <Image
-                src="/assets/starknet.svg"
+                src="/assets/starknet-light.svg"
                 alt="starknet"
                 width={95}
                 height={24}
